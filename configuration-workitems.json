@@ -1,0 +1,77 @@
+{
+  "ChangeSetMappingFile": null,
+  "Source": {
+    "$type": "TfsTeamProjectConfig",
+    "Collection": "https://dev.azure.com/{yourSourceOrganisation}",
+    "Project": "VDS ePoC",
+    "ReflectedWorkItemIDFieldName": "ReflectedWorkItemId",
+    "AllowCrossProjectLinking": false,
+    "AuthenticationMode": "Prompt",
+    "PersonalAccessToken": "",
+    "LanguageMaps": {
+      "AreaPath": "Area",
+      "IterationPath": "Iteration"
+    }
+  },
+  "Target": {
+    "$type": "TfsTeamProjectConfig",
+    "Collection": "https://dev.azure.com/{yourTargetOrganisation}",
+    "Project": "VDS Production",
+    "ReflectedWorkItemIDFieldName": "ReflectedWorkItemId",
+    "AllowCrossProjectLinking": false,
+    "AuthenticationMode": "Prompt",
+    "PersonalAccessToken": "",
+    "LanguageMaps": {
+      "AreaPath": "Area",
+      "IterationPath": "Iteration"
+    }
+  },
+  "FieldMaps": [],
+  "GitRepoMapping": null,
+  "LogLevel": "Information",
+  "Processors": [
+    {
+      "$type": "WorkItemMigrationConfig",
+      "Enabled": true,
+      "ReplayRevisions": true,
+      "PrefixProjectToNodes": false,
+      "UpdateCreatedDate": false,
+      "UpdateCreatedBy": false,
+      "BuildFieldTable": false,
+      "AppendMigrationToolSignatureFooter": false,
+      "WIQLQueryBit": "AND [System.WorkItemType] IN ('Bug', 'Epic', 'Feature', 'Issue', 'Task', 'User Story')",
+      "WIQLOrderBit": "[System.Id] asc",
+      "LinkMigration": true,
+      "AttachmentMigration": true,
+      "AttachmentWorkingPath": "c:\\temp\\WorkItemAttachmentWorkingFolder\\",
+      "FixHtmlAttachmentLinks": true,
+      "SkipToFinalRevisedWorkItemType": false,
+      "WorkItemCreateRetryLimit": 5,
+      "FilterWorkItemsThatAlreadyExistInTarget": false,
+      "PauseAfterEachWorkItem": false,
+      "AttachmentMaxSize": 480000000,
+      "CollapseRevisions": false,
+      "LinkMigrationSaveEachAsAdded": true,
+      "GenerateMigrationComment": false,
+      "NodeBasePaths": [],
+      "WorkItemIDs": []
+    }
+  ],
+  "Version": "11.9",
+  "workaroundForQuerySOAPBugEnabled": false,
+  "WorkItemTypeDefinition": {
+    "sourceWorkItemTypeName": "targetWorkItemTypeName"
+  },
+  "Endpoints": {
+    "InMemoryWorkItemEndpoints": [
+      {
+        "Name": "Source",
+        "EndpointEnrichers": null
+      },
+      {
+        "Name": "Target",
+        "EndpointEnrichers": null
+      }
+    ]
+  }
+}
